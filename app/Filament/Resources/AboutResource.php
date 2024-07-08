@@ -35,9 +35,10 @@ class AboutResource extends Resource
                 Forms\Components\TextInput::make('fonction')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('signature')
+                Forms\Components\FileUpload::make('signature')
                     ->required()
-                    ->maxLength(255),
+                    ->directory('signatures')
+                    ->disk('public'),
             ]);
     }
 
@@ -51,8 +52,6 @@ class AboutResource extends Resource
                 Tables\Columns\TextColumn::make('author')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('fonction')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('signature')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
