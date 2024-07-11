@@ -7,10 +7,13 @@ use App\Models\Banner;
 use App\Models\Company;
 use App\Models\Faq;
 use App\Models\Feature;
+use App\Models\FeatureItem;
 use App\Models\Message;
+use App\Models\Newsletter;
 use App\Models\Partner;
 use App\Models\Service;
 use App\Models\Team;
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Brian2694\Toastr\Facades\Toastr;
@@ -22,8 +25,11 @@ class HomeController extends Controller
         $banners = Banner::query()->where('active', '!=', 0)->get();
         $partners = Partner::query()->get();
         $faqs = Faq::query()->get();
-        $features = Feature::query()->get();
-        return view('welcome', compact('banners',  'partners', 'faqs', 'features'));
+        $feature = Feature::query()->first();
+        $featureitems = FeatureItem::query()->get();
+        $testimonies = Testimony::query()->where('active', '!=', 0)->get();
+        return view('welcome', compact('banners',  'partners', 'faqs',
+            'feature', 'featureitems', 'testimonies'));
     }
 
     public function about()
@@ -57,5 +63,23 @@ class HomeController extends Controller
             Toastr::success('message', 'Message envoye avec succes !!!');
             return back();
         }
+    }
+
+    public function services()
+    {
+        $services = Service::query()->get();
+        return view('services', compact('services'));
+    }
+
+    public function newsletter(Request $request)
+    {
+        $newsletter = Newsletter::query()->where('email', $request->input('email'))->first();
+        if ($newsletter) {
+            Toastr::warning('message', 'Vous etes deja inscrit dans la boite aux lettres.');
+        } else {
+            Newsletter::query()->create(['email' => $request->input('email')]);
+            Toastr::success('message', 'Vous avez souscris avec succes a notre botre aux lettres.');
+        }
+        return back();
     }
 }

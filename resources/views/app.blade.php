@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        @include('seo')
         <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
         <!-- ========== Favicon Icon ========== -->
@@ -21,6 +21,8 @@
         <link href="{{ asset('assets/css/helper.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/unit-test.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 
     </head>
     <body>
@@ -124,17 +126,9 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li><a href="">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Nos services</a>
-                            <ul class="dropdown-menu">
-                                @foreach($services as $service)
-                                    <li>
-                                        <a href="/">{{ $service->title }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('homepage') }}">Accueil</a></li>
+                        <li><a href="{{ route('services') }}">Services</a></li>
+                        <li><a href="">Gallerie</a></li>
                         <li><a href="{{ asset('about') }}" class="{{ Route::is('about') ? 'active' : '' }}">A propos de nous</a></li>
                         <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact</a></li>
                     </ul>
@@ -150,7 +144,7 @@
                                         <i class="fas fa-comments-alt-dollar"></i>
                                     </div>
                                     <div class="info">
-                                        <p>Have any Questions?</p>
+                                        <p>Vous avez des questions ?</p>
                                         <h5><a href="mailto:{{ $company->official_email }}">{{ $company->official_email }}</a></h5>
                                     </div>
                                 </div>
@@ -189,7 +183,7 @@
                                 {!! $company->brief_description !!}
                             </p>
                             <div class="opening-hours">
-                                <h5>Opening Hours</h5>
+                                <h5>Horaires d'ouverture</h5>
                                 <ul>
                                     @foreach($openingHours as $op)
                                         <li>
@@ -204,16 +198,16 @@
                     </div>
                     <div class="col-lg-2 col-md-6 footer-item">
                         <div class="f-item link">
-                            <h4 class="widget-title">Our Company</h4>
+                            <h4 class="widget-title">Notre entreprise</h4>
                             <ul>
                                 <li>
-                                    <a href="{{ route('homepage') }}">Home</a>
+                                    <a href="{{ route('homepage') }}">Accueil</a>
                                 </li>
                                 <li>
-                                    <a href="/">Help Center</a>
+                                    <a href="{{ route('services') }}">Services</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('about') }}">About</a>
+                                    <a href="{{ route('about') }}">A propos de nous</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('contact') }}">Contact</a>
@@ -223,25 +217,33 @@
                     </div>
                     <div class="col-lg-2 col-md-6 footer-item">
                         <div class="f-item link">
-                            <h4 class="widget-title">Our Services</h4>
+                            <h4 class="widget-title">Nos services</h4>
                             <ul>
-                                @foreach($services as $service)
-                                    <li>
-                                        <a href="/">{{ $service->title }}</a>
-                                    </li>
-                                @endforeach
+                                <li>
+                                    <a href="{{ route('services') }}">Location de bureau</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('services') }}">Location de coworking</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('services') }}">Accompagnement managérial</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('services') }}">Domiciliation</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 footer-item">
-                        <h4 class="widget-title">Newsletter</h4>
+                        <h4 class="widget-title">Boite aux lettres</h4>
                         <p>
-                            Join our subscribers list to get the latest <br> news and special offers.
+                            Rejoignez notre liste d'abonnés pour recevoir les dernières  <br> nouvelles et offres spéciales.
                         </p>
                         <div class="f-item newsletter">
-                            <form action="#">
-                                <input type="email" placeholder="Your Email" class="form-control" name="email">
-                                <button type="submit"> Subscribe</button>
+                            <form action="{{ route('newsletter') }}" method="post">
+                                @csrf
+                                <input type="email" placeholder="Votre Email" class="form-control" name="email">
+                                <button type="submit"> Souscrire</button>
                             </form>
                         </div>
                         <ul class="footer-social">
@@ -295,7 +297,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>&copy; Copyright {{ date('Y') }}. All Rights Reserved by <a href="https://arielnana.me">Ariel Nana</a></p>
+                        <p>&copy; Copyright {{ date('Y') }}. All Rights Reserved by <a href="https://mercielspaces.com">Merciel Spaces</a> ||
+                            Developed by <a href="https://arielnana.me">Ariel Nana</a>
+                        </p>
                     </div>
                     <div class="col-lg-6 text-end">
                         <ul>
@@ -338,5 +342,7 @@
         <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/js/validnavs.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
     </body>
 </html>

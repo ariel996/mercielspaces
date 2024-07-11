@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->integer('company_growth')->default(0);
-            $table->integer('data_wow_delay')->nullable();
-            $table->string('h4title');
-            $table->string('paragraph');
-            $table->string('feature_icon');
+            $table->string('company_title');
+            $table->integer('satisfied_client')->default(0);
+            $table->string('client_title');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

@@ -28,4 +28,6 @@ Route::get('locale/{locale}', function ($locale) {
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/services', [HomeController::class, 'services'])->name('services');
 Route::post('/send-message', [HomeController::class, 'send_message'])->name('send_message');
+Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('newsletter');

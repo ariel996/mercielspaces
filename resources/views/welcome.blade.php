@@ -28,7 +28,7 @@
                             </div>
                             <!-- Banner Thumb -->
                             <div class="banner-thumb">
-                                <img src="{{ asset('storage/'.$banner->banner_img) }}" alt="illustration">
+                                <img src="{{ asset('storage/'.$banner->banner_img) }}" alt="banner">
                             </div>
                             <!-- End Banner Thumb -->
                         </div>
@@ -59,37 +59,39 @@
                         <div class="arrow-shape">
                             <img src="/assets/img/shape/21.png" alt="Image not found">
                         </div>
-                        <h2 class="title mb-25">Fadwa</h2>
-                        <p>hfk</p>
+                        <h2 class="title mb-25">Nos Missions</h2>
+                        <p>{{ $feature?->description }}</p>
                         <div class="circle-progress">
-                            @foreach($features as $feature)
-                                <div class="progressbar">
-                                    <div class="circle" data-percent="{{ $feature->company_growth }}">
-                                        <strong></strong>
-                                    </div>
-                                    <h4>{{ $feature->title }}</h4>
+                            <div class="progressbar">
+                                <div class="circle" data-percent="{{ $feature?->company_growth }}">
+                                    <strong></strong>
                                 </div>
-                            @endforeach
+                                <h4>{{ $feature?->company_title }}</h4>
+                            </div>
+                            <div class="progressbar">
+                                <div class="circle" data-percent="{{ $feature?->satisfied_client }}">
+                                    <strong></strong>
+                                </div>
+                                <h4>{{ $feature?->client_title }}</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- End Single Itme -->
                 <div class="col-lg-6 offset-lg-1 pl-60 pl-md-15 pl-xs-10 mt-md-50 mt-xs-50">
-
                     <!-- Single Itme -->
-                    @foreach($features as $feature)
-                        <div class="feature-style-one wow fadeInUp" @if($feature->data_wow_delay != "") data-wow-delay="{{ $feature->data_wow_delay }}ms" @endif>
+                    @foreach($featureitems as $item)
+                        <div class="feature-style-one wow fadeInUp" @if($item->data_wow_delay != "") data-wow-delay="{{ $item->data_wow_delay }}ms" @endif>
                             <div class="icon">
-                                <i class="{{ $feature->feature_icon }}"></i>
+                                <i class="{{ $item->feature_icon }}"></i>
                             </div>
                             <div class="info">
-                                <h4>{{ $feature->h4title }}</h4>
-                                {!! $feature->paragraph !!}
+                                <h4>{{ $item->h4title }}</h4>
+                                {!! $item->paragraph !!}
                             </div>
                         </div>
                     @endforeach
                     <!-- End Single Itme -->
-
                 </div>
             </div>
         </div>
@@ -102,8 +104,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="site-heading text-center">
-                        <h4 class="sub-heading">What we do</h4>
-                        <h2 class="title">Services We're offering</h2>
+                        <h4 class="sub-heading">Ce que nous faisons</h4>
+                        <h2 class="title">Les services que nous offrons</h2>
                         <div class="devider"></div>
                     </div>
                 </div>
@@ -145,14 +147,14 @@
                 <div class="col-lg-5">
                     <div class="partner-map" style="background-image: url(/assets/img/shape/map.png);">
                         <h2 class="mask-text" style="background-image: url(/assets/img/banner/10.jpg);">{{  count($partners) }}</h2>
-                        <h4>Partners in world wide</h4>
+                        <h4>Partenaires dans le monde</h4>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
                     <div class="partner-items">
                         <ul>
                             @foreach($partners as $partner)
-                                <li><img src="{{ asset('storage/'.$partner->partner_img) }}" alt="Image Not FOund"></li>
+                                <li><img src="{{ asset('storage/'.$partner->partner_img) }}" alt="Partner Image Not Found"></li>
                             @endforeach
                         </ul>
                     </div>
@@ -172,8 +174,8 @@
 
                 <div class="col-lg-6">
                     <div class="faq-style-one default-padding">
-                        <h4 class="sub-heading">Basic faq</h4>
-                        <h2 class="title mb-30">Common Question <br> for this project</h2>
+                        <h4 class="sub-heading">Foire aux Questions</h4>
+                        <h2 class="title mb-30">Les questions <br> frequemment posees</h2>
                         <div class="accordion" id="faqAccordion">
                             @foreach($faqs as $faq)
                                 <div class="accordion-item">
@@ -203,4 +205,67 @@
         </div>
     </div>
     <!-- End Faq -->
+
+    <!-- Start Testimonials
+============================================= -->
+    <div class="testimonials-style-two-area bg-dark default-padding-top half-shape-light-bottom" style="background-image: url(assets/img/shape/34.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="site-heading text-light text-center">
+                        <h4 class="sub-heading">Temoignages</h4>
+                        <h2 class="title">Feedback des clients</h2>
+                        <div class="devider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fill">
+            <div class="row">
+                <div class="testimonial-style-two-carousel swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+
+                        <!-- Single Item -->
+                        @foreach($testimonies as $testimony)
+                            <div class="swiper-slide">
+                                <div class="testimonial-style-two">
+                                    <img src="{{ asset('assets/img/shape/quote.png') }}" alt="Quote">
+                                    <div class="top-info">
+                                        <h3>{{ $testimony->appreciation }}</h3>
+                                        <div class="testimonial-rating">
+                                            @for($i=1; $i<=$testimony->nbre_etoile; $i++)
+                                                <i class="fas fa-star"></i>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        {!! $testimony->temoignage !!}
+                                    </div>
+                                    <div class="provider">
+                                        <div class="content">
+                                            <h4>{{ $testimony->client }}</h4>
+                                            <span>{{ $testimony->country }}</span>
+                                        </div>
+                                        @if($testimony->company_logo != "")
+                                            <div class="thumb">
+                                                <img src="{{ asset('storage/'.$testimony->company_logo) }}" alt="company Logo">
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <!-- End Single Item -->
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Testimonials  -->
 @endsection

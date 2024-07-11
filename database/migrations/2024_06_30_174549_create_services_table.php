@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('service_img');
             $table->string('title')->unique();
-            $table->string('icone');
-            $table->longText('description');
+            $table->string('icone')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

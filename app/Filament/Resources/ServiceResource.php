@@ -25,17 +25,15 @@ class ServiceResource extends Resource
             ->schema([
                 Forms\Components\FileUpload::make('service_img')
                     ->required()
-                ->disk('public')
-                ->directory('services'),
+                    ->disk('public')
+                    ->directory('services'),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('icone')
-                    ->required()
                     ->helperText('')
                     ->maxLength(255),
                 Forms\Components\RichEditor::make('description')
-                    ->required()
                     ->columnSpanFull(),
             ]);
     }

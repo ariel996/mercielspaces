@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    @include('seo')
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- ========== Favicon Icon ========== -->
@@ -167,16 +167,8 @@
 
                 <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
                     <li><a href="{{ route('homepage') }}">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Nos services</a>
-                        <ul class="dropdown-menu">
-                            @foreach($services as $service)
-                                <li>
-                                    <a href="/">{{ $service->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    <li><a href="{{ route('services') }}">Services</a></li>
+                    <li><a href="">Gallerie</a></li>
                     <li><a href="{{ route('about') }}" class="{{ Route::is('about') ? 'active' : '' }}">A propos de nous</a></li>
                     <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact</a></li>
                 </ul>
@@ -186,7 +178,7 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="button"><a href="{{ route('contact') }}">Get consultant</a></li>
+                        <li class="button"><a href="{{ route('contact') }}">Contactez nous</a></li>
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
@@ -222,7 +214,7 @@
                             {!! $company->brief_description !!}
                         </p>
                         <div class="opening-hours">
-                            <h5>Opening Hours</h5>
+                            <h5>Horaires d'ouverture</h5>
                             <ul>
                                 @foreach($openingHours as $op)
                                     <li>
@@ -237,16 +229,16 @@
                 </div>
                 <div class="col-lg-2 col-md-6 footer-item">
                     <div class="f-item link">
-                        <h4 class="widget-title">Our Company</h4>
+                        <h4 class="widget-title">Notre entreprise</h4>
                         <ul>
                             <li>
-                                <a href="{{ route('homepage') }}">Home</a>
+                                <a href="{{ route('homepage') }}">Accueil</a>
                             </li>
                             <li>
-                                <a href="/">Help Center</a>
+                                <a href="{{ route('services') }}">Services</a>
                             </li>
                             <li>
-                                <a href="{{ route('about') }}">About</a>
+                                <a href="{{ route('about') }}">A propos de nous</a>
                             </li>
                             <li>
                                 <a href="{{ route('contact') }}">Contact</a>
@@ -256,25 +248,33 @@
                 </div>
                 <div class="col-lg-2 col-md-6 footer-item">
                     <div class="f-item link">
-                        <h4 class="widget-title">Our Services</h4>
+                        <h4 class="widget-title">Nos services</h4>
                         <ul>
-                            @foreach($services as $service)
-                                <li>
-                                    <a href="/">{{ $service->title }}</a>
-                                </li>
-                            @endforeach
+                            <li>
+                                <a href="{{ route('services') }}">Location de bureau</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('services') }}">Location de coworking</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('services') }}">Accompagnement managérial</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('services') }}">Domiciliation</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 footer-item">
-                    <h4 class="widget-title">Newsletter</h4>
+                    <h4 class="widget-title">Boite aux lettres</h4>
                     <p>
-                        Join our subscribers list to get the latest <br> news and special offers.
+                        Rejoignez notre liste d'abonnés pour recevoir les dernières  <br> nouvelles et offres spéciales.
                     </p>
                     <div class="f-item newsletter">
-                        <form action="#">
-                            <input type="email" placeholder="Your Email" class="form-control" name="email">
-                            <button type="submit"> Subscribe</button>
+                        <form action="{{ route('newsletter') }}" method="post">
+                            @csrf
+                            <input type="email" placeholder="Votre Email" class="form-control" name="email">
+                            <button type="submit"> Souscrire</button>
                         </form>
                     </div>
                     <ul class="footer-social">

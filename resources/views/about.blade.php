@@ -1,19 +1,19 @@
 @extends('app2')
-@section('title', 'About')
+@section('title', 'A propos')
 @section('content')
     <!-- Start Breadcrumb
         ============================================= -->
     <div class="breadcrumb-area bg-cover shadow dark text-center text-light" style="background-image: url(/assets/img/banner/10.jpg);">
         <div class="breadcrum-shape">
-            <img src="/assets/img/shape/50.png" alt="Image Not Found">
+            <img src="{{ asset('assets/img/shape/50.png') }}" alt="Image Not Found">
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h1>Contact Us</h1>
+                    <h1>A propos de nous</h1>
                     <ul class="breadcrumb">
-                        <li><a href=""><i class="fas fa-home"></i> Home</a></li>
-                        <li>About</li>
+                        <li><a href="{{ route('homepage') }}"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li>A propos de nous</li>
                     </ul>
                 </div>
             </div>
@@ -24,14 +24,14 @@
 ============================================= -->
     <div class="about-style-one-area default-padding">
         <div class="shape-animated-left">
-            <img src="/assets/img/shape/anim-1.png" alt="Image Not Found">
-            <img src="/assets/img/shape/anim-2.png" alt="Image Not Found">
+            <img src="{{ asset('assets/img/shape/anim-1.png') }}" alt="Image Not Found">
+            <img src="{{ asset('assets/img/shape/anim-2.png') }}" alt="Image Not Found">
         </div>
         <div class="container">
             <div class="row align-center">
                 <div class="about-style-one col-xl-6 col-lg-5">
-                    <div class="h4 sub-heading">Feel Valued & Rewarded</div>
-                    <h2 class="title mb-25">Finance Consulting for Challenging Times</h2>
+                    <div class="h4 sub-heading">Se sentir valorisé et récompensé</div>
+                    <h2 class="title mb-25">Accompagner les entreprises sur le plan managérial</h2>
                     {!! $about?->description !!}
                     <div class="owner-info">
                         <div class="left-info">
@@ -57,7 +57,7 @@
                                             <div class="timer" data-to="98" data-speed="2000">98</div>
                                             <div class="operator">%</div>
                                         </div>
-                                        <span class="medium">Consulting Success</span>
+                                        <span class="medium">Réussite en matière de conseil</span>
                                     </div>
                                 </li>
                                 <li>
@@ -69,14 +69,14 @@
                                             <div class="timer" data-to="120" data-speed="2000">120</div>
                                             <div class="operator">+</div>
                                         </div>
-                                        <span class="medium">Worldwide Clients</span>
+                                        <span class="medium">Clients internationaux</span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <div class="thumb-shape-bottom wow fadeInDown" data-wow-delay="300ms">
-                            <img src="/assets/img/shape/anim-3.png" alt="Image Not Found">
-                            <img src="/assets/img/shape/anim-4.png" alt="Image Not Found">
+                            <img src="{{ asset('assets/img/shape/anim-3.png') }}" alt="Image Not Found">
+                            <img src="{{ asset('assets/img/shape/anim-4.png') }}" alt="Image Not Found">
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 <div class="col-lg-5">
                     <div class="partner-map" style="background-image: url(/assets/img/shape/map.png);">
                         <h2 class="mask-text" style="background-image: url(/assets/img/banner/10.jpg);">{{  count($partners) }}</h2>
-                        <h4>Partners in world wide</h4>
+                        <h4>Partenaires dans le monde entier</h4>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -117,8 +117,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="site-heading text-center">
-                        <h4 class="sub-heading">Team Members</h4>
-                        <h2 class="title">Meet our experts</h2>
+                        <h4 class="sub-heading">Membres de l'équipe</h4>
+                        <h2 class="title">Rencontrez nos experts</h2>
                         <div class="devider"></div>
                     </div>
                 </div>

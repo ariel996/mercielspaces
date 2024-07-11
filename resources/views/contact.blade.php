@@ -5,15 +5,15 @@
     ============================================= -->
     <div class="breadcrumb-area bg-cover shadow dark text-center text-light" style="background-image: url(/assets/img/banner/10.jpg);">
         <div class="breadcrum-shape">
-            <img src="/assets/img/shape/50.png" alt="Image Not Found">
+            <img src="{{ asset('assets/img/shape/50.png') }}" alt="Image Not Found">
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h1>Contact Us</h1>
+                    <h1>Contactez-nous</h1>
                     <ul class="breadcrumb">
-                        <li><a href=""><i class="fas fa-home"></i> Home</a></li>
-                        <li>Contact</li>
+                        <li><a href="{{ route('homepage') }}"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li>Contactez-nous</li>
                     </ul>
                 </div>
             </div>
@@ -25,7 +25,7 @@
     <div class="contact-style-one-area overflow-hidden default-padding">
 
         <div class="contact-shape">
-            <img src="/assets/img/shape/37.png" alt="Image Not Found">
+            <img src="{{ asset('assets/img/shape/37.png') }}" alt="Image Not Found">
         </div>
 
         <div class="container">
@@ -34,9 +34,9 @@
                 <div class="contact-stye-one col-lg-5 mb-md-50 mb-xs-20">
 
                     <div class="contact-style-one-info">
-                        <h2>Contact Information</h2>
+                        <h2>Informations sur l'entreprise'</h2>
                         <p>
-                            Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing.
+                            Bien vouloir remplir ce formulaire afin de nous laisser un message.
                         </p>
                         <ul>
                             <li class="wow fadeInUp">
@@ -44,7 +44,7 @@
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
                                 <div class="content">
-                                    <h5 class="title">Hotline</h5>
+                                    <h5 class="title">Ligne directe</h5>
                                     <a href="#">{{ $company->hotline }}</a>
                                 </div>
                             </li>
@@ -53,7 +53,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <h5 class="title">Our Location</h5>
+                                    <h5 class="title">Notre localisation</h5>
                                     <p>
                                         {{ $company->location }}
                                     </p>
@@ -64,7 +64,7 @@
                                     <i class="fas fa-envelope-open-text"></i>
                                 </div>
                                 <div class="info">
-                                    <h5 class="title">Official Email</h5>
+                                    <h5 class="title">E-mail officiel</h5>
                                     <a href="`mailto:${company.official_email}`">{{ $company->official_email }}</a>
                                 </div>
                             </li>
@@ -75,8 +75,8 @@
 
                 <div class="contact-stye-one col-lg-7 pl-60 pl-md-15 pl-xs-15">
                     <div class="contact-form-style-one">
-                        <h5 class="sub-title">Have Questions?</h5>
-                        <h2 class="heading">Send us a Massage</h2>
+                        <h5 class="sub-title">Vous avez des questions ?</h5>
+                        <h2 class="heading">Envoyez-nous un message</h2>
                         <form action="{{ route('send_message') }}" method="POST" class="contact-form contact-form">
                             @csrf
                             <div class="row">
@@ -113,7 +113,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="submit" name="submit" id="submit">
-                                        <i class="fa fa-paper-plane"></i> Get in Touch
+                                        <i class="fa fa-paper-plane"></i> Prendre contact
                                     </button>
                                 </div>
                             </div>
