@@ -297,7 +297,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>&copy; Copyright {{ date('Y') }}. All Rights Reserved by <a href="https://mercielspaces.com">Merciel Spaces</a> ||
+                        <p>&copy; Copyright {{ date('Y') }}. <a href="https://mercielspaces.com">Merciel Spaces</a> ||
                             Developed by <a href="https://arielnana.me">Ariel Nana</a>
                         </p>
                     </div>
